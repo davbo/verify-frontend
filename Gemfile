@@ -47,5 +47,6 @@ group :test, :development do
   gem 'rspec-rails', '~> 3.4.0'
   gem 'capybara', '~> 2.6'
   gem 'govuk-lint'
+  gem 'webmock'
 end
 
