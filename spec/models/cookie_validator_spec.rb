@@ -16,4 +16,12 @@ describe CookieValidator do
     expect(validation).to be_ok
     expect(validation).to_not be_no_cookies
   end
+
+  it "will fail validation if session start time cookie is missing" do
+    cookies = Hash[(CookieNames.session_cookies - [CookieNames::SESSION_STARTED_TIME_COOKIE_NAME]).collect { |n| [n, n] }]
+    validation = CookieValidator.new.validate(cookies)
+    expect(validation).to_not be_ok
+    expect(validation).to be_missing_cookie
+    expect(validation.message).to eql "Session start time cookie is missing"
+  end
 end

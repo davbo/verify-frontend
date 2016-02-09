@@ -48,7 +48,15 @@ RSpec.describe 'When the user visits the start page' do
     expect(a_request(:get, session_info_route)).to_not have_been_made
   end
 
-  it 'will display the generic error when start time cookie is missing'
+  it 'will display the generic error when start time cookie is missing' do
+    allow(Rails.logger).to receive(:info)
+    expect(Rails.logger).to receive(:info).with("Start time cookie cannot be found").at_least(:once)
+    set_cookies(cookie_hash.except("session_start_time"))
+    visit '/start'
+
+    expect(page).to have_content "Something went wrong"
+  end
+
   it 'will display the generic error when the secure cookie is missing'
   it 'will display the generic error when the session id cookie is missing'
 
