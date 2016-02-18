@@ -33,5 +33,13 @@ module VerifyFrontend
       config.hide_locale = true
       config.available_locales = [:en,:cy]
     end
+
+    SecureHeaders::Configuration.default do |config| 
+      config.csp = {
+        default_src: %w(https: 'self'),
+        font_src: %w('self' data:),
+        style_src: %w('self' 'unsafe-inline'),
+      }
+    end
   end
 end

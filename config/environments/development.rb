@@ -36,3 +36,10 @@ Rails.application.configure do
   #Cookie Configuration
   config.x.cookies.secure = false
 end
+SecureHeaders::Configuration.default do |config|
+  config.csp = {
+    default_src: %w('self'),
+    font_src: %w('self' data:),
+    style_src: %w('self' 'unsafe-inline'),
+  }
+end

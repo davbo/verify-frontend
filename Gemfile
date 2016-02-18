@@ -37,6 +37,8 @@ gem "rack-handlers"
 
 gem 'http', '~> 1.0.0'
 
+gem 'secure_headers'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
