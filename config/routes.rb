@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   post 'SAML2/SSO' => 'saml#request_post'
 
+  get 'service-status', to: 'service_status#index', as: :service_status
+
   if ['test', 'development'].include? Rails.env
     get 'test-saml' => 'test_saml#index'
   end
